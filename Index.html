@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golis Restaurant — Authentic Somali Cuisine, Southall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8dcc8;
+      --gold: #c8a96e;
+      --dark: #1a1612;
+      --charcoal: #2d2820;
+      --text: #3d3530;
+      --muted: #7a6f65;
+      --white: #fdfaf5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(253,250,245,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,169,110,0.2);
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80') center/cover no-repeat;
+      opacity: 0.25;
+    }
+
+    .hero-badge {
+      position: relative;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      position: relative;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.6);
+    }
+
+    .hero-ctas {
+      position: relative;
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover { background: var(--gold); color: var(--dark); }
+    .btn-solid { background: var(--gold); color: var(--dark); }
+    .btn-solid:hover { background: transparent; color: var(--gold); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(245,240,232,0.4);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--sand);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(200,169,110,0.3);
+    }
+
+    .info-cell {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid rgba(200,169,110,0.3);
+    }
+
+    .info-cell:last-child { border-right: none; }
+
+    .info-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .info-value {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      background: var(--white);
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+    }
+
+    .about-text p {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    /* ── MENU ── */
+    #menu {
+      background: var(--cream);
+    }
+
+    .menu-header { text-align: center; margin-bottom: 2.5rem; }
+
+    .menu-filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(200,169,110,0.4);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-card {
+      background: var(--white);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(26,22,18,0.12);
+    }
+
+    .menu-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+
+    .menu-card-meta {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .menu-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-card p {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-price {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .menu-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid rgba(200,169,110,0.4);
+      color: var(--muted);
+    }
+
+    .menu-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ── WHY ── */
+    #why {
+      background: var(--dark);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    #why .section-title { color: var(--white); }
+
+    .why-lead {
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: rgba(245,240,232,0.6);
+      margin-top: 1.5rem;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .why-feature {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .why-icon { font-size: 1.5rem; line-height: 1; }
+
+    .why-feature h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .why-feature p {
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: rgba(245,240,232,0.55);
+    }
+
+    .why-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    /* ── HOURS ── */
+    #hours {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+
+    .hours-table tr { border-bottom: 1px solid rgba(200,169,110,0.2); }
+    .hours-table td { padding: 0.85rem 0; font-size: 0.8rem; color: var(--charcoal); }
+    .hours-table td:last-child { text-align: right; color: var(--muted); }
+
+    .hours-note {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hours-note strong { color: var(--charcoal); }
+
+    /* ── VISIT ── */
+    #visit {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .visit-info { display: flex; flex-direction: column; gap: 2rem; }
+
+    .visit-block-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .visit-block p {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .visit-block a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.82rem;
+    }
+
+    .visit-block a:hover { text-decoration: underline; }
+
+    .order-box {
+      background: var(--cream);
+      padding: 2.5rem;
+      border: 1px solid rgba(200,169,110,0.3);
+    }
+
+    .order-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .order-box p {
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .order-btns { display: flex; flex-direction: column; gap: 0.8rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(245,240,232,0.5);
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.45);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-socials { display: flex; gap: 1rem; }
+
+    .footer-socials a {
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(245,240,232,0.4);
+      border: 1px solid rgba(245,240,232,0.15);
+      padding: 0.4rem 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--gold); border-color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      color: rgba(245,240,232,0.25);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 1.5rem; }
+      .info-strip { grid-template-columns: 1fr 1fr; }
+      #about, #why, #hours, #visit { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { padding: 2.5rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+      .info-strip { grid-template-columns: 1fr 1fr; }
+      .info-cell { padding: 1rem; }
+      .hero-ctas { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">GOLIS</a>
+    <ul class="nav-links">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <p class="hero-badge">Authentic Somali Cuisine · Southall, London</p>
+    <h1>GOLIS <em>Restaurant</em></h1>
+    <p class="hero-sub">A taste of Somalia, in the heart of Southall</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn btn-solid">Explore Menu</a>
+      <a href="#visit" class="btn">Order Delivery</a>
+    </div>
+    <div class="hero-scroll">Discover</div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-cell">
+      <div class="info-label">Location</div>
+      <div class="info-value">Featherstone Rd, Southall UB2 5AB</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Hours</div>
+      <div class="info-value">Monday – Sunday · 12:00 – 21:00</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Rating</div>
+      <div class="info-value">4.5 ★ · 119 Reviews</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-label">Cuisine</div>
+      <div class="info-value">Authentic Somali &amp; East African</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <img class="about-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80" alt="Traditional Somali food spread" />
+    <div class="about-text">
+      <p class="section-label">Est. in Southall · Our Story</p>
+      <h2 class="section-title">Where Somalia <em>meets London</em></h2>
+      <p>Golis Restaurant is named after the majestic Golis mountain range of northern Somalia — a symbol of strength, heritage, and beauty. We bring that same spirit to every dish we serve.</p>
+      <p>Our kitchen is built on generations of Somali cooking tradition: fragrant xawaash spice blends, slow-cooked meats, hand-rolled canjeero, and the warmth of communal dining.</p>
+      <p>Whether you're Somali and craving a taste of home, or curious and trying it for the first time — you're welcome at our table.</p>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="menu-header">
+      <p class="section-label">What we serve</p>
+      <h2 class="section-title">The <em>Menu</em></h2>
+      <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--muted);">Traditional Somali dishes prepared with authentic spices and techniques, served with pride.</p>
+    </div>
+
+    <div class="menu-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="mains">Mains</button>
+      <button class="filter-btn" data-filter="rice">Rice &amp; Pasta</button>
+      <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+      <button class="filter-btn" data-filter="drinks">Drinks</button>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-card" data-cat="mains">
+        <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600&q=80" alt="Hilib Ari" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Signature · Mains</div>
+          <h3>Hilib Ari</h3>
+          <p>Tender slow-braised goat meat seasoned with xawaash — Somalia's iconic spice blend of cumin, coriander, turmeric and cardamom. Served with basmati rice.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £12</span>
+            <span class="menu-tag">Halal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="mains">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Hilib Suqaar" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Classic · Mains</div>
+          <h3>Hilib Suqaar</h3>
+          <p>Diced beef or chicken sautéed with onions, peppers, cumin and coriander. A staple of Somali street food culture — fast, bold, deeply satisfying.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £10</span>
+            <span class="menu-tag">Halal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="mains">
+        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Maraq" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Traditional · Mains</div>
+          <h3>Maraq</h3>
+          <p>Rich Somali bone broth simmered for hours with goat bones, garlic, cumin and lime. Served as a starter or a comforting main — deeply restorative.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £8</span>
+            <span class="menu-tag">Halal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="rice">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600&q=80" alt="Bariis Iskukaris" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Festive · Rice</div>
+          <h3>Bariis Iskukaris</h3>
+          <p>The crown jewel of Somali cuisine. Fragrant basmati rice cooked in seasoned broth with xawaash spices, topped with tender slow-cooked goat and caramelised onions.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £14</span>
+            <span class="menu-tag">Signature</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="rice">
+        <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?w=600&q=80" alt="Baasto" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Classic · Pasta</div>
+          <h3>Baasto</h3>
+          <p>Somali-style pasta — a beloved legacy of Italian colonial contact — simmered in a spiced tomato and meat sauce with East African aromatics. Comforting and unique.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £10</span>
+            <span class="menu-tag">Halal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="rice">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80" alt="Bariis Pilau" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Side · Rice</div>
+          <h3>Bariis Pilau</h3>
+          <p>Lightly spiced pilau rice cooked with whole cardamom pods, cloves and cinnamon. The perfect companion to any Golis main dish.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £5</span>
+            <span class="menu-tag">Vegan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="breakfast">
+        <img src="https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600&q=80" alt="Canjeero" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Breakfast · Classic</div>
+          <h3>Canjeero</h3>
+          <p>Somalia's beloved fermented flatbread — spongy, slightly sour, with a distinctive bubbly texture. Served with honey, sesame butter (sugo), or meat stew.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £6</span>
+            <span class="menu-tag">Traditional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="breakfast">
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt="Muufo" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Breakfast · Bread</div>
+          <h3>Muufo</h3>
+          <p>Thick, hearty Somali flatbread made from maize flour — crispy on the outside, soft within. Traditionally eaten in the morning with tea and suqaar.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £4</span>
+            <span class="menu-tag">Traditional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="drinks">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Shaah Somali" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Hot · Drinks</div>
+          <h3>Shaah Somali</h3>
+          <p>Traditional Somali spiced tea brewed with cardamom, cinnamon, cloves and ginger. Served with milk — the heart of every Somali gathering.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £2.50</span>
+            <span class="menu-tag">Classic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-cat="drinks">
+        <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&q=80" alt="Caano Geel" />
+        <div class="menu-card-body">
+          <div class="menu-card-meta">Drinks · Traditional</div>
+          <h3>Caano Geel</h3>
+          <p>Camel milk — a Somali cultural treasure. Rich, slightly salty and deeply nourishing. One of the most distinctive drinks in all of East African cuisine.</p>
+          <div class="menu-card-footer">
+            <span class="menu-price">From £4</span>
+            <span class="menu-tag">Authentic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="menu-note">Full menu available in-restaurant · Prices from £10–£25 per person</p>
+  </section>
+
+  <!-- WHY GOLIS -->
+  <section id="why">
+    <div>
+      <p class="section-label">GOLIS · Why Golis</p>
+      <h2 class="section-title">More than a meal — <em>a cultural experience</em></h2>
+      <p class="why-lead">At Golis, food is ceremony. We serve every dish the way it was meant to be eaten: generous, communal, and with pride.</p>
+      <div class="why-features" style="margin-top:2.5rem;">
+        <div class="why-feature">
+          <div class="why-icon">🌍</div>
+          <div>
+            <h3>Authentic Recipes</h3>
+            <p>Every dish is prepared using traditional Somali techniques and spice blends — no shortcuts, no compromises.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">🕌</div>
+          <div>
+            <h3>100% Halal</h3>
+            <p>All our meat is certified halal. We respect our community and the values that bring us together at the table.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">🤝</div>
+          <div>
+            <h3>Community Heart</h3>
+            <p>Born in Southall, for everyone. Whether you grew up eating canjeero or you've never heard of it — you belong here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="why-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Restaurant ambiance" />
+  </section>
+
+  <!-- HOURS -->
+  <section id="hours">
+    <div>
+      <p class="section-label">Opening Hours</p>
+      <h2 class="section-title">We're open <em>every day</em></h2>
+      <table class="hours-table">
+        <tr><td>Monday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Tuesday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Wednesday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Thursday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Friday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Saturday</td><td>12:00 – 21:00</td></tr>
+        <tr><td>Sunday</td><td>12:00 – 21:00</td></tr>
+      </table>
+      <p class="hours-note"><strong>Walk-ins welcome.</strong> Last orders at 20:30. We recommend arriving early on weekends — we fill up fast.</p>
+    </div>
+    <div style="padding-top:4rem;">
+      <p class="section-label">Good to know</p>
+      <h2 class="section-title" style="font-size:2rem;">No reservations needed —<br><em>just come hungry</em></h2>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit">
+    <div>
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Come <em>visit</em></h2>
+      <div class="visit-info" style="margin-top:2rem;">
+        <div class="visit-block">
+          <p class="visit-block-label">Address</p>
+          <p>Featherstone Road<br>Southall, London<br>UB2 5AB</p>
+        </div>
+        <div class="visit-block">
+          <p class="visit-block-label">Transport</p>
+          <p>Southall Railway Station<br>5 min walk · Elizabeth Line</p>
+        </div>
+        <div class="visit-block">
+          <p class="visit-block-label">Follow Us</p>
+          <a href="https://www.instagram.com/golisofficial" target="_blank">@golisofficial on Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="order-box">
+      <h3>Order now</h3>
+      <p>Eat in, collect, or get it delivered straight to your door. We've got you covered.</p>
+      <div class="order-btns">
+        <a href="#" class="btn btn-solid">🛵 Order Delivery</a>
+        <a href="#" class="btn">🍱 Order Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">GOLIS</div>
+    <ul class="footer-links">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#visit">Find Us</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/golisofficial" target="_blank" title="Instagram">IG</a>
+      <a href="#" title="TikTok">TK</a>
+    </div>
+    <p class="footer-copy">© 2025 Golis Restaurant &amp; Café · Featherstone Road, Southall UB2 5AB · All rights reserved</p>
+  </footer>
+
+  <script>
+    // Menu filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.menu-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Scroll nav shadow
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 10 ? '0 2px 20px rgba(26,22,18,0.08)' : 'none';
+    });
+  </script>
+</body>
+</html>
